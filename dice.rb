@@ -18,16 +18,14 @@ get("/dice/2/10") do
   second_die = rand(1..10)
   sum = first_die + second_die
 
-  outcome = "You rolled a #{first_die} and a #{second_die} for a total of #{sum}."
-  "<h1>2d10</h1>
-   <p>#{outcome}</p>"
+  @outcome = "You rolled a #{first_die} and a #{second_die} for a total of #{sum}."
+  erb(:one_t, { :layout => :wrapper })
 end
 
 get("/dice/1/20") do
   first_die = rand(1..20)
   outcome = "You rolled a #{first_die}."
-  "<h1>1d20</h1>
-   <p>#{outcome}</p>"
+  erb(:one_twenty,{ :layout => :wrapper })
 end
 
 get("/dice/5/4") do 
@@ -40,8 +38,7 @@ get("/dice/5/4") do
   sum = first_die + second_die + th_die + fo_die + fi_die
 
   outcome = "You rolled a #{first_die}, a #{second_die}, a #{th_die}, a #{fo_die}, and a #{fi_die} for a total of #{sum}."
-  "<h1>5d4</h1>
-   <p>#{outcome}</p>"
+  erb(:five_four, { :layout => :wrapper })
 end
 
 use(BetterErrors::Middleware)
